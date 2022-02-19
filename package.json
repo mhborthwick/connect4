@@ -5,7 +5,8 @@
   "main": "dist/connect4.js",
   "scripts": {
     "build": "tsc",
-    "watch": "tsc -w"
+    "watch": "tsc -w",
+    "lint": "eslint src/connect4.ts"
   },
   "keywords": [
     "connect four"
@@ -14,6 +15,9 @@
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^17.0.18",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
     "typescript": "^4.5.5"
   }
 }
