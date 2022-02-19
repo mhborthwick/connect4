@@ -5,10 +5,10 @@
     "target": "es5",
     "module": "commonjs",
     "strict": true,
-    "types": ["node"],
+    "types": ["node", "jest"],
     "removeComments": true,
     "outDir": "dist"
   },
-  "include": ["**.ts", "src/connect4.ts"],
+  "include": ["src/connect4.ts"],
   "exclude": ["node_modules"]
 }
