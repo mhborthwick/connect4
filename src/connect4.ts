@@ -1,18 +1,29 @@
-interface Display {}
+interface Display {
+  printScoreBoard(score: Score): void;
+}
+
+interface Score {
+  red: number;
+  blue: number;
+}
 
 // -- Display --
 class DOMDisplay {
-  // DOMDisplay class
+  printScoreBoard(score: Score): void {
+    console.log(score);
+  }
 }
 
 // -- Model --
 class Connect4 {
   display: Display;
+  score: { red: number; blue: number };
   constructor(display: Display) {
     this.display = display;
+    this.score = { red: 0, blue: 0 };
   }
-  startGame() {
-    return;
+  startGame(): void {
+    this.display.printScoreBoard(this.score);
   }
 }
 
