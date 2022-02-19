@@ -1,0 +1,14 @@
+
+{
+  "compilerOptions": {
+    "lib": ["es2016", "dom"],
+    "target": "es5",
+    "module": "commonjs",
+    "strict": true,
+    "types": ["node"],
+    "removeComments": true,
+    "outDir": "dist"
+  },
+  "include": ["**.ts", "src/connect4.ts"],
+  "exclude": ["node_modules"]
+}
