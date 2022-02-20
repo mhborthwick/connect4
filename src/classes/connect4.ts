@@ -9,6 +9,7 @@ export default class Connect4 {
     this.board = this.createBoard();
     this.score = { red: 0, blue: 0 };
   }
+
   createBoard(): string[][] {
     return [
       ["", "", "", "", "", "", ""],

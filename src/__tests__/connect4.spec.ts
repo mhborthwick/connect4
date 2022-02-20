@@ -10,8 +10,15 @@ describe("Class: Connect4", () => {
       jest
         .spyOn(DOMDisplay.prototype, "printScoreBoard")
         .mockImplementationOnce(jest.fn());
+      jest
+        .spyOn(DOMDisplay.prototype, "printGameBoard")
+        .mockImplementationOnce(jest.fn());
       domDisplay = new DOMDisplay();
       connect4 = new Connect4(domDisplay);
+    });
+
+    afterEach(() => {
+      jest.clearAllMocks();
     });
 
     it("should print score board once when game starts", () => {
@@ -25,6 +32,23 @@ describe("Class: Connect4", () => {
         red: 0,
         blue: 0,
       });
+    });
+
+    it("should print game board once when game starts", () => {
+      connect4.startGame();
+      expect(domDisplay.printGameBoard).toHaveBeenCalledTimes(1);
+    });
+
+    it("should print game board with blank 6 x 7 board when game starts", () => {
+      connect4.startGame();
+      expect(domDisplay.printGameBoard).toHaveBeenCalledWith([
+        ["", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", ""],
+      ]);
     });
   });
 });
