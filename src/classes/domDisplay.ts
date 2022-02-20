@@ -1,16 +1,6 @@
-interface Display {
-  getElement(selector: string): HTMLElement;
-  createElement(selector: string, className: string): HTMLElement;
-  printScoreBoard(score: Score): void;
-}
+import { Display, Score } from "../types";
 
-interface Score {
-  red: number;
-  blue: number;
-}
-
-// -- Display --
-class DOMDisplay implements Display {
+export default class DOMDisplay implements Display {
   getElement(selector: string): HTMLElement {
     return <HTMLElement>document.querySelector(selector);
   }
@@ -34,20 +24,3 @@ class DOMDisplay implements Display {
     scoreBoard.append(playerOneScore, playerTwoScore);
   }
 }
-
-// -- Model --
-class Connect4 {
-  display: Display;
-  score: { red: number; blue: number };
-  constructor(display: Display) {
-    this.display = display;
-    this.score = { red: 0, blue: 0 };
-  }
-  startGame(): void {
-    this.display.printScoreBoard(this.score);
-  }
-}
-
-// -- Start Game --
-const connect4 = new Connect4(new DOMDisplay());
-connect4.startGame();
