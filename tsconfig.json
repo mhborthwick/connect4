@@ -8,5 +8,6 @@
     "types": ["node", "jest"],
     "removeComments": true,
     "outDir": "dist",
+    "esModuleInterop": true
   }
 }
