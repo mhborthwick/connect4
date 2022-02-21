@@ -29,6 +29,7 @@ export default class Connect4 {
           this.display.updateBoard(row, col, this.currentPlayer);
         }
       }
+      this.switchPlayer();
     }
   };
 
@@ -41,6 +42,13 @@ export default class Connect4 {
       ["", "", "", "", "", "", ""],
       ["", "", "", "", "", "", ""],
     ];
+  }
+
+  switchPlayer(): void {
+    this.currentPlayer =
+      this.currentPlayer === this.players.red
+        ? this.players.blue
+        : this.players.red;
   }
 
   startGame(): void {
