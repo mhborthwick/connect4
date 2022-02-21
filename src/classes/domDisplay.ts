@@ -16,7 +16,28 @@ export default class DOMDisplay implements Display {
     return element;
   }
 
-  printGameBoard(board: string[][]) {
+  bindHandler(clickHandler: (row: number, col: number) => void): void {
+    document.addEventListener("click", (event: Event) => {
+      const clicked = <HTMLElement>event.target;
+      const isColumn = clicked.className === "col";
+      if (isColumn) {
+        const cell = clicked;
+        const row = +cell.parentElement!.dataset.row!;
+        const col = +cell.dataset.col!;
+        clickHandler(row, col);
+      }
+    });
+  }
+
+  updateBoard(row: number, col: number, currentPlayer: string): void {
+    const playerToken = this.createElement("span", currentPlayer);
+    playerToken.textContent = currentPlayer;
+    const boardRow = this.getElement(`[data-row="${row}"]`);
+    const cell = <HTMLElement>boardRow.querySelector(`[data-col="${col}"]`);
+    cell.append(playerToken);
+  }
+
+  printGameBoard(board: string[][]): void {
     const game = this.getElement("#game");
     const gameBoard = this.createElement("div", "board");
     game.append(gameBoard);

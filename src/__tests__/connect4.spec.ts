@@ -13,6 +13,9 @@ describe("Class: Connect4", () => {
       jest
         .spyOn(DOMDisplay.prototype, "printGameBoard")
         .mockImplementationOnce(jest.fn());
+      jest
+        .spyOn(DOMDisplay.prototype, "bindHandler")
+        .mockImplementationOnce(jest.fn());
       domDisplay = new DOMDisplay();
       connect4 = new Connect4(domDisplay);
     });
