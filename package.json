@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --config webpack.config.js",
     "watch": "webpack watch --config webpack.config.js",
-    "lint": "eslint src/connect4.ts",
+    "lint": "eslint src/**/*.ts" ,
     "test": "jest"
   },
   "keywords": [

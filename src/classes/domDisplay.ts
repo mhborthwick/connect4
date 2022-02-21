@@ -22,6 +22,7 @@ export default class DOMDisplay implements Display {
       const isColumn = clicked.className === "col";
       if (isColumn) {
         const cell = clicked;
+        // fix later - https://typescript-eslint.io/rules/no-non-null-assertion/
         const row = +cell.parentElement!.dataset.row!;
         const col = +cell.dataset.col!;
         clickHandler(row, col);
