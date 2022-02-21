@@ -16,10 +16,19 @@ export default class Connect4 {
   }
 
   clickCell = (row: number, col: number) => {
+    const isLastRow = row === 5;
     const canContinue = this.board[row][col] === "";
     if (canContinue) {
-      this.board[row][col] = this.currentPlayer;
-      this.display.updateBoard(row, col, this.currentPlayer);
+      if (isLastRow) {
+        this.board[row][col] = this.currentPlayer;
+        this.display.updateBoard(row, col, this.currentPlayer);
+      } else {
+        const isCellBelowOpen = this.board[row + 1][col] === "";
+        if (!isCellBelowOpen) {
+          this.board[row][col] = this.currentPlayer;
+          this.display.updateBoard(row, col, this.currentPlayer);
+        }
+      }
     }
   };
 
