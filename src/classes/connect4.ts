@@ -36,12 +36,18 @@ export default class Connect4 {
         }
       }
       const win = this.isGameWon(row, col);
+      const stalemate = this.board
+        .map((row) => row.filter((col) => col === ""))
+        .filter((row) => row.length > 0);
       if (win) {
         this.increaseScore(this.currentPlayer);
         this.display.updateScore(this.score, this.currentPlayer);
         this.gameOver(this.currentPlayer);
+      } else if (stalemate.length < 1) {
+        this.gameOver();
+      } else {
+        this.switchPlayer();
       }
-      this.switchPlayer();
     }
   };
 
@@ -62,9 +68,9 @@ export default class Connect4 {
     this.board = this.createBoard();
   };
 
-  gameOver(winner: string): void {
+  gameOver(winner?: string): void {
     this.waiting = true;
-    this.display.printMessage(winner);
+    this.display.printMessage(<string>winner);
     setTimeout(() => {
       this.resetBoard();
       this.waiting = false;

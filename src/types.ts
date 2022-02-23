@@ -7,7 +7,7 @@ export interface Display {
   getAllElements(selector: string): NodeList;
   createElement(selector: string, className: string): HTMLElement;
   updateBoard(row: number, col: number, currentPlayer: string): void;
-  printMessage(winnder: string): void;
+  printMessage(winner?: string): void;
   printGameBoard(board: string[][]): void;
   printScoreBoard(score: Score): void;
 }

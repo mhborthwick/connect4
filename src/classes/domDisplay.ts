@@ -46,13 +46,13 @@ export default class DOMDisplay implements Display {
     message.remove();
   }
 
-  printMessage = (winner: string): void => {
+  printMessage(winner?: string): void {
     const message = this.createElement("div", "message");
     const player = winner === "red" ? "Player 1" : "Player 2";
     message.textContent = winner ? `${player} wins!` : "Nobody wins!";
     const game = this.getElement("#game");
     game.append(message);
-  };
+  }
 
   updateScore(currentScore: Score, currentPlayer: string): void {
     const currentPlayerScore = this.getElement(`#score-${currentPlayer}`);
