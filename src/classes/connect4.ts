@@ -30,7 +30,9 @@ export default class Connect4 {
         }
       }
       const win = this.isGameWon(row, col);
-      console.log(win);
+      if (win) {
+        this.gameOver();
+      }
       this.switchPlayer();
     }
   };
@@ -46,7 +48,11 @@ export default class Connect4 {
     ];
   }
 
-  isGameWon = (row: number, col: number): boolean => {
+  gameOver(): void {
+    console.log(`${this.currentPlayer} wins!`);
+  }
+
+  isGameWon(row: number, col: number): boolean {
     // refactor later
     if (
       // Horizontal win
@@ -180,7 +186,7 @@ export default class Connect4 {
     )
       return true;
     return false;
-  };
+  }
 
   switchPlayer(): void {
     this.currentPlayer =
