@@ -54,8 +54,16 @@ export default class Connect4 {
     ];
   }
 
+  resetBoard = (): void => {
+    this.display.clearGameBoard();
+    this.board = this.createBoard();
+  };
+
   gameOver(): void {
     console.log(`${this.currentPlayer} wins!`);
+    setTimeout(() => {
+      this.resetBoard();
+    }, 2000);
   }
 
   isGameWon(row: number, col: number): boolean {

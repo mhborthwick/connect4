@@ -16,6 +16,17 @@ export default class DOMDisplay implements Display {
     return element;
   }
 
+  getAllElements(selector: string): NodeList {
+    return <NodeList>document.querySelectorAll(selector);
+  }
+
+  clearGameBoard = (): void => {
+    const cells = this.getAllElements(".col");
+    cells.forEach((c) => {
+      c.textContent = "";
+    });
+  };
+
   bindHandler(clickHandler: (row: number, col: number) => void): void {
     document.addEventListener("click", (event: Event) => {
       const clicked = <HTMLElement>event.target;
