@@ -6,6 +6,7 @@ export default class Connect4 {
   board: string[][];
   players: { red: string; blue: string };
   currentPlayer: string;
+  waiting: boolean;
   constructor(display: Display) {
     this.display = display;
     this.board = this.createBoard();
@@ -13,6 +14,7 @@ export default class Connect4 {
     this.players = { red: "red", blue: "blue" };
     this.currentPlayer = this.players.red;
     this.display.bindHandler(this.clickCell);
+    this.waiting = false;
   }
 
   increaseScore(currentPlayer: string): void {
@@ -22,7 +24,7 @@ export default class Connect4 {
   clickCell = (row: number, col: number): void => {
     const isLastRow = row === 5;
     const canContinue = this.board[row][col] === "";
-    if (canContinue) {
+    if (canContinue && !this.waiting) {
       if (isLastRow) {
         this.board[row][col] = this.currentPlayer;
         this.display.updateBoard(row, col, this.currentPlayer);
@@ -61,9 +63,11 @@ export default class Connect4 {
   };
 
   gameOver(winner: string): void {
+    this.waiting = true;
     this.display.printMessage(winner);
     setTimeout(() => {
       this.resetBoard();
+      this.waiting = false;
     }, 2000);
   }
 
