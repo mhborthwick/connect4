@@ -62,17 +62,22 @@ export default class Connect4 {
     ];
   }
 
-  resetBoard = (): void => {
+  resetBoard(): void {
     this.display.clearMessage();
     this.display.clearGameBoard();
     this.board = this.createBoard();
-  };
+  }
+
+  resetPlayers() {
+    this.currentPlayer = this.players.red;
+  }
 
   gameOver(winner?: string): void {
     this.waiting = true;
     this.display.printMessage(<string>winner);
     setTimeout(() => {
       this.resetBoard();
+      this.resetPlayers();
       this.waiting = false;
     }, 2000);
   }
