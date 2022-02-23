@@ -30,6 +30,13 @@ export default class DOMDisplay implements Display {
     });
   }
 
+  updateScore(currentScore: Score, currentPlayer: string): void {
+    const currentPlayerScore = this.getElement(`#score-${currentPlayer}`);
+    const player = currentPlayer === "red" ? "Player 1" : "Player 2";
+    const d: number = currentScore[currentPlayer as keyof Score];
+    currentPlayerScore.textContent = `${player}: ${d}`;
+  }
+
   updateBoard(row: number, col: number, currentPlayer: string): void {
     const playerToken = this.createElement("span", currentPlayer);
     playerToken.textContent = currentPlayer;

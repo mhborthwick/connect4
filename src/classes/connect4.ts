@@ -1,8 +1,8 @@
-import { Display } from "../types";
+import { Display, Score } from "../types";
 
 export default class Connect4 {
   display: Display;
-  score: { red: number; blue: number };
+  score: Score;
   board: string[][];
   players: { red: string; blue: string };
   currentPlayer: string;
@@ -13,6 +13,10 @@ export default class Connect4 {
     this.players = { red: "red", blue: "blue" };
     this.currentPlayer = this.players.red;
     this.display.bindHandler(this.clickCell);
+  }
+
+  increaseScore(): void {
+    this.score[this.currentPlayer as keyof Score] += 1;
   }
 
   clickCell = (row: number, col: number): void => {
@@ -31,6 +35,8 @@ export default class Connect4 {
       }
       const win = this.isGameWon(row, col);
       if (win) {
+        this.increaseScore();
+        this.display.updateScore(this.score, this.currentPlayer);
         this.gameOver();
       }
       this.switchPlayer();
