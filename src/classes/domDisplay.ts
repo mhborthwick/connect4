@@ -20,12 +20,12 @@ export default class DOMDisplay implements Display {
     return <NodeList>document.querySelectorAll(selector);
   }
 
-  clearGameBoard = (): void => {
+  clearGameBoard(): void {
     const cells = this.getAllElements(".col");
     cells.forEach((c) => {
       c.textContent = "";
     });
-  };
+  }
 
   bindHandler(clickHandler: (row: number, col: number) => void): void {
     document.addEventListener("click", (event: Event) => {
@@ -40,6 +40,19 @@ export default class DOMDisplay implements Display {
       }
     });
   }
+
+  clearMessage(): void {
+    const message = this.getElement(".message");
+    message.remove();
+  }
+
+  printMessage = (winner: string): void => {
+    const message = this.createElement("div", "message");
+    const player = winner === "red" ? "Player 1" : "Player 2";
+    message.textContent = winner ? `${player} wins!` : "Nobody wins!";
+    const game = this.getElement("#game");
+    game.append(message);
+  };
 
   updateScore(currentScore: Score, currentPlayer: string): void {
     const currentPlayerScore = this.getElement(`#score-${currentPlayer}`);

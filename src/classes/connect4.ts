@@ -15,8 +15,8 @@ export default class Connect4 {
     this.display.bindHandler(this.clickCell);
   }
 
-  increaseScore(): void {
-    this.score[this.currentPlayer as keyof Score] += 1;
+  increaseScore(currentPlayer: string): void {
+    this.score[currentPlayer as keyof Score] += 1;
   }
 
   clickCell = (row: number, col: number): void => {
@@ -35,9 +35,9 @@ export default class Connect4 {
       }
       const win = this.isGameWon(row, col);
       if (win) {
-        this.increaseScore();
+        this.increaseScore(this.currentPlayer);
         this.display.updateScore(this.score, this.currentPlayer);
-        this.gameOver();
+        this.gameOver(this.currentPlayer);
       }
       this.switchPlayer();
     }
@@ -55,12 +55,13 @@ export default class Connect4 {
   }
 
   resetBoard = (): void => {
+    this.display.clearMessage();
     this.display.clearGameBoard();
     this.board = this.createBoard();
   };
 
-  gameOver(): void {
-    console.log(`${this.currentPlayer} wins!`);
+  gameOver(winner: string): void {
+    this.display.printMessage(winner);
     setTimeout(() => {
       this.resetBoard();
     }, 2000);
