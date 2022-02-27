@@ -1,21 +1,14 @@
 import Connect4 from "../classes/connect4";
 import DOMDisplay from "../classes/domDisplay";
 
+jest.mock("../classes/domDisplay");
+
 describe("Class: Connect4", () => {
   describe("Method: startGame", () => {
     let domDisplay: DOMDisplay;
     let connect4: Connect4;
 
     beforeEach(() => {
-      jest
-        .spyOn(DOMDisplay.prototype, "printScoreBoard")
-        .mockImplementationOnce(jest.fn());
-      jest
-        .spyOn(DOMDisplay.prototype, "printGameBoard")
-        .mockImplementationOnce(jest.fn());
-      jest
-        .spyOn(DOMDisplay.prototype, "bindHandler")
-        .mockImplementationOnce(jest.fn());
       domDisplay = new DOMDisplay();
       connect4 = new Connect4(domDisplay);
     });
@@ -52,6 +45,50 @@ describe("Class: Connect4", () => {
         ["", "", "", "", "", "", ""],
         ["", "", "", "", "", "", ""],
       ]);
+    });
+  });
+
+  describe("Method Name: clickCell", () => {
+    let domDisplay: DOMDisplay;
+    let connect4: Connect4;
+
+    function createMockBoard(): string[][] {
+      return [
+        ["", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", ""],
+        ["blue", "blue", "", "", "", "", ""],
+        ["red", "red", "red", "", "", "", ""],
+      ];
+    }
+
+    beforeEach(() => {
+      domDisplay = new DOMDisplay();
+      connect4 = new Connect4(domDisplay);
+      connect4.board = createMockBoard();
+    });
+
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
+
+    it("should update board when cell below is filled", () => {
+      connect4.clickCell(3, 0);
+      expect(domDisplay.updateBoard).toHaveBeenCalledTimes(1);
+    });
+
+    it("should not update board when cell below is unfilled", () => {
+      connect4.clickCell(2, 0);
+      expect(domDisplay.updateBoard).not.toHaveBeenCalledTimes(1);
+    });
+
+    it("should have a winner when 4 cells in a row are filled", () => {
+      // mock gameOver to handle built-in timer
+      jest.spyOn(connect4, "gameOver").mockImplementationOnce(jest.fn());
+      connect4.clickCell(5, 3);
+      expect(domDisplay.updateBoard).toHaveBeenCalledTimes(1);
+      expect(connect4.isGameWon(5, 3)).toEqual(true);
     });
   });
 });
