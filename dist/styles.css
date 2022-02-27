@@ -1,9 +1,38 @@
+:root {
+  --font-family: sans-serif;
+  --font-color: #fcb42a;
+  --bg-color: #feeedc;
+  --board-hover-color: #4d4de4;
+  --board-cell-color: #3e3d4f;
+  --red-player-color: #da0e03;
+  --blue-player-color: #0f39d0;
+  --message-color: #355f40;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bg-color);
+  color: var(--font-color);
+  margin: 2rem 0;
+  font-size: 16px;
+  line-height: 1.5;
+  padding: 0;
+  font-family: var(--font-family);
+}
+
 #game {
   max-width: 750px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  border: 2px solid black;
+}
+
+.score {
+  margin: 1rem 0;
+  text-align: center;
 }
 
 .row,
@@ -14,12 +43,36 @@
 }
 
 .col {
+  border: 2px solid var(--board-cell-color);
   cursor: pointer;
-  border: 2px solid black;
   margin: 5px;
-  height: 100px;
-  width: 100px;
+  height: 50%;
+  width: 50%;
   line-height: 0;
   border-radius: 4px;
-  font-size: 40px;
+  font-size: 12px;
+}
+
+.col:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
+.col:hover {
+  border: 2px solid var(--board-hover-color);
+}
+
+.red {
+  color: var(--red-player-color);
+}
+
+.blue {
+  color: var(--blue-player-color);
+}
+
+.message {
+  margin: 2rem 0;
+  text-align: center;
+  color: var(--message-color);
 }
