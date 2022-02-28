@@ -1,4 +1,4 @@
-import { Display, Score } from "../types";
+import { Display, Player, Score } from "../types";
 
 export default class DOMDisplay implements Display {
   getElement(selector: string): HTMLElement {
@@ -54,16 +54,16 @@ export default class DOMDisplay implements Display {
     game.append(message);
   }
 
-  updateScore(currentScore: Score, currentPlayer: string): void {
-    const currentPlayerScore = this.getElement(`#score-${currentPlayer}`);
-    const player = currentPlayer === "red" ? "Player 1" : "Player 2";
-    const d: number = currentScore[currentPlayer as keyof Score];
+  updateScore(currentScore: Score, currentPlayer: Player): void {
+    const currentPlayerScore = this.getElement(`#score-${currentPlayer.token}`);
+    const player = currentPlayer.token === "red" ? "Player 1" : "Player 2";
+    const d: number = currentScore[currentPlayer.token as keyof Score];
     currentPlayerScore.textContent = `${player}: ${d}`;
   }
 
-  updateBoard(row: number, col: number, currentPlayer: string): void {
-    const playerToken = this.createElement("span", currentPlayer);
-    playerToken.textContent = currentPlayer;
+  updateBoard(row: number, col: number, currentPlayer: Player): void {
+    const playerToken = this.createElement("span", currentPlayer.token);
+    playerToken.textContent = currentPlayer.token;
     const boardRow = this.getElement(`[data-row="${row}"]`);
     const cell = <HTMLElement>boardRow.querySelector(`[data-col="${col}"]`);
     cell.append(playerToken);
