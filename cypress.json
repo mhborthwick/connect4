@@ -1,0 +1,9 @@
+{
+  "integrationFolder": "src/__tests__/e2e",
+  "screenshotsFolder": "src/__tests__/e2e/screenshots",
+  "videosFolder": "src/__tests__/e2e/videos",
+  "downloadsFolder": "src/__tests__/e2e/downloads",
+  "fixturesFolder": false,
+  "pluginsFile": false,
+  "supportFile": false
+}

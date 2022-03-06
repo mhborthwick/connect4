@@ -1,7 +1,7 @@
-import Connect4 from "../classes/connect4";
-import DOMDisplay from "../classes/domDisplay";
+import Connect4 from "../../classes/connect4";
+import DOMDisplay from "../../classes/domDisplay";
 
-jest.mock("../classes/domDisplay");
+jest.mock("../../classes/domDisplay");
 
 describe("Class: Connect4", () => {
   describe("Method: startGame", () => {
