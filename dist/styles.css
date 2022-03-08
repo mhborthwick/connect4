@@ -30,6 +30,14 @@ html {
   flex-direction: column;
 }
 
+.score > .red {
+  color: var(--red-player-color);
+}
+
+.score > .blue {
+  color: var(--blue-player-color);
+}
+
 .score {
   margin: 1rem 0;
   text-align: center;
@@ -63,12 +71,34 @@ html {
   border: 2px solid var(--board-hover-color);
 }
 
-.red {
-  color: var(--red-player-color);
+span.red {
+  color: transparent;
+  width: 100%;
+  height: 100%;
+  background: var(--red-player-color);
+  border: 1px solid var(--board-cell-color);
+  border-radius: 50%;
 }
 
-.blue {
-  color: var(--blue-player-color);
+span.red:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
+span.blue {
+  color: transparent;
+  width: 100%;
+  height: 100%;
+  background: var(--blue-player-color);
+  border: 1px solid var(--board-cell-color);
+  border-radius: 50%;
+}
+
+span.blue:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
 }
 
 .message {
