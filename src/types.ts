@@ -1,5 +1,8 @@
 export interface Display {
-  bindHandler(clickHandler: (row: number, col: number) => void): void;
+  bindClickHandler(clickHandler: (row: number, col: number) => void): void;
+  bindHoverHandler(
+    clickHandler: (row: number, col: number, eventString: string) => void
+  ): void;
   clearGameBoard(): void;
   clearMessage(): void;
   updateScore(score: Score, currentPlayer: Player): void;

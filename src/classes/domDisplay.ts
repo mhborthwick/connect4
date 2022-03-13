@@ -27,7 +27,34 @@ export default class DOMDisplay implements Display {
     });
   }
 
-  bindHandler(clickHandler: (row: number, col: number) => void): void {
+  bindHoverHandler(
+    hoverHandler: (row: number, col: number, eventString: string) => void
+  ): void {
+    document.addEventListener("mouseover", (event: Event) => {
+      const hovered = <HTMLElement>event.target;
+      const isColumn = hovered.className === "col";
+      if (isColumn) {
+        const cell = hovered;
+        // fix later - https://typescript-eslint.io/rules/no-non-null-assertion/
+        const row = +cell.parentElement!.dataset.row!;
+        const col = +cell.dataset.col!;
+        hoverHandler(row, col, "mouseover");
+      }
+    });
+    document.addEventListener("mouseout", (event: Event) => {
+      const hovered = <HTMLElement>event.target;
+      const isColumn = hovered.className === "col";
+      if (isColumn) {
+        const cell = hovered;
+        // fix later - https://typescript-eslint.io/rules/no-non-null-assertion/
+        const row = +cell.parentElement!.dataset.row!;
+        const col = +cell.dataset.col!;
+        hoverHandler(row, col, "mouseout");
+      }
+    });
+  }
+
+  bindClickHandler(clickHandler: (row: number, col: number) => void): void {
     document.addEventListener("click", (event: Event) => {
       const clicked = <HTMLElement>event.target;
       const isColumn = clicked.className === "col";

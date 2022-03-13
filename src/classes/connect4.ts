@@ -19,7 +19,8 @@ export default class Connect4 {
       blue: { token: "blue", isTurn: false },
     };
     this.currentPlayer = this.players.red;
-    this.display.bindHandler(this.clickCell);
+    this.display.bindClickHandler(this.clickCell);
+    this.display.bindHoverHandler(this.hoverCell);
     this.waiting = false;
   }
 
@@ -27,7 +28,53 @@ export default class Connect4 {
     this.score[currentPlayer.token as keyof Score] += 1;
   }
 
+  hoverCell = (row: number, col: number, eventString: string): void => {
+    // refactor later
+    if (eventString === "mouseover") {
+      const currentCol = this.display.getElement(
+        `[data-row="${row}"] [data-col="${col}"]`
+      );
+      if (row === 5 && !currentCol.innerHTML.length) {
+        this.display.getElement(
+          `[data-row="${row}"] [data-col="${col}"]`
+        ).style.border = "2px solid #F9A810";
+      } else {
+        this.display.getElement(
+          `[data-row="${row}"] [data-col="${col}"]`
+        ).style.border = "2px solid #4d4de4";
+      }
+      let i = 1;
+      while (row + i <= 5) {
+        const colBelow = this.display.getElement(
+          `[data-row="${row + i}"] [data-col="${col}"]`
+        );
+        if (row + i === 5 && !colBelow.innerHTML.length) {
+          this.display.getElement(
+            `[data-row="${row + i}"] [data-col="${col}"]`
+          ).style.border = "2px solid #F9A810";
+        } else if (!colBelow.innerHTML.length) {
+          this.display.getElement(
+            `[data-row="${row + i}"] [data-col="${col}"]`
+          ).style.border = "2px solid #4d4de4";
+        } else {
+          this.display.getElement(
+            `[data-row="${row + i - 1}"] [data-col="${col}"]`
+          ).style.border = "2px solid #F9A810";
+        }
+        i += 1;
+      }
+    } else if (eventString === "mouseout") {
+      const cols = this.display.getAllElements(
+        ".col"
+      ) as NodeListOf<HTMLElement>;
+      cols.forEach((c) => (c.style.border = "2px solid #3e3d4f"));
+    }
+  };
+
   clickCell = (row: number, col: number): void => {
+    // refactor later
+    const cols = this.display.getAllElements(".col") as NodeListOf<HTMLElement>;
+    cols.forEach((c) => (c.style.border = "2px solid #3e3d4f"));
     const isLastRow = row === 5;
     const canContinue = this.board[row][col] === "";
     if (canContinue && !this.waiting) {

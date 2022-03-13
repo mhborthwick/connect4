@@ -67,10 +67,6 @@ html {
   padding-bottom: 100%;
 }
 
-.col:hover {
-  border: 2px solid var(--board-hover-color);
-}
-
 span.red {
   color: transparent;
   width: 100%;
