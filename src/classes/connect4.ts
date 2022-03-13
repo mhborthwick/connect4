@@ -41,6 +41,25 @@ export default class Connect4 {
           this.board[row][col] = this.currentPlayer.token;
           this.display.updateBoard(row, col, this.currentPlayer);
           this.currentPlayer.isTurn = false;
+        } else {
+          // refactor later
+          let i = 1;
+          while (row + i <= 5) {
+            if (row + i === 5 && this.board[row + i][col] === "") {
+              this.board[row + i][col] = this.currentPlayer.token;
+              this.display.updateBoard(row + i, col, this.currentPlayer);
+              this.currentPlayer.isTurn = false;
+            } else if (
+              this.board[row + i][col] === "" &&
+              !(this.board[row + i + 1][col] === "")
+            ) {
+              this.board[row + i][col] = this.currentPlayer.token;
+              this.display.updateBoard(row + i, col, this.currentPlayer);
+              this.currentPlayer.isTurn = false;
+            } else {
+              i += 1;
+            }
+          }
         }
       }
       const win = this.isGameWon(row, col);

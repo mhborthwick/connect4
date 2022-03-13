@@ -78,9 +78,17 @@ describe("Class: Connect4", () => {
       expect(domDisplay.updateBoard).toHaveBeenCalledTimes(1);
     });
 
-    it("should not update board when cell below is unfilled", () => {
+    it("should fill lowest unfilled cell when cell below is unfilled", () => {
       connect4.clickCell(2, 0);
-      expect(domDisplay.updateBoard).not.toHaveBeenCalledTimes(1);
+      expect(domDisplay.updateBoard).toHaveBeenCalledTimes(1);
+      expect(connect4.board).toEqual([
+        ["", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", ""],
+        ["red", "", "", "", "", "", ""],
+        ["blue", "blue", "", "", "", "", ""],
+        ["red", "red", "red", "", "", "", ""],
+      ]);
     });
 
     it("should have a winner when 4 cells in a row are filled", () => {
