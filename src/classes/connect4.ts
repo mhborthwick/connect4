@@ -29,6 +29,8 @@ export default class Connect4 {
   }
 
   hoverCell = (row: number, col: number, eventString: string): void => {
+    // #F9A810 = orange
+    // #4d4de4 = blue
     // refactor later
     if (eventString === "mouseover") {
       const currentCol = this.display.getElement(
@@ -48,6 +50,9 @@ export default class Connect4 {
         const colBelow = this.display.getElement(
           `[data-row="${row + i}"] [data-col="${col}"]`
         );
+        const colAbove = this.display.getElement(
+          `[data-row="${row + i - 1}"] [data-col="${col}"]`
+        );
         if (row + i === 5 && !colBelow.innerHTML.length) {
           this.display.getElement(
             `[data-row="${row + i}"] [data-col="${col}"]`
@@ -56,7 +61,7 @@ export default class Connect4 {
           this.display.getElement(
             `[data-row="${row + i}"] [data-col="${col}"]`
           ).style.border = "2px solid #4d4de4";
-        } else {
+        } else if (colBelow.innerHTML.length && !colAbove.innerHTML.length) {
           this.display.getElement(
             `[data-row="${row + i - 1}"] [data-col="${col}"]`
           ).style.border = "2px solid #F9A810";
