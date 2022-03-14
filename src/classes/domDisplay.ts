@@ -73,6 +73,11 @@ export default class DOMDisplay implements Display {
     message.remove();
   }
 
+  clearHoverEffects(): void {
+    const cols = this.getAllElements(".col") as NodeListOf<HTMLElement>;
+    cols.forEach((c) => (c.style.border = "2px solid #3e3d4f"));
+  }
+
   printMessage(winner?: string): void {
     const message = this.createElement("div", "message");
     const player = winner === "red" ? "Player 1" : "Player 2";

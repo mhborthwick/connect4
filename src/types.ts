@@ -4,6 +4,7 @@ export interface Display {
     clickHandler: (row: number, col: number, eventString: string) => void
   ): void;
   clearGameBoard(): void;
+  clearHoverEffects(): void;
   clearMessage(): void;
   updateScore(score: Score, currentPlayer: Player): void;
   getElement(selector: string): HTMLElement;

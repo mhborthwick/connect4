@@ -59,17 +59,13 @@ export default class Connect4 {
         i += 1;
       }
     } else if (eventString === "mouseout") {
-      const cols = this.display.getAllElements(
-        ".col"
-      ) as NodeListOf<HTMLElement>;
-      cols.forEach((c) => (c.style.border = "2px solid #3e3d4f"));
+      this.display.clearHoverEffects();
     }
   };
 
   clickCell = (row: number, col: number): void => {
     // refactor later
-    const cols = this.display.getAllElements(".col") as NodeListOf<HTMLElement>;
-    cols.forEach((c) => (c.style.border = "2px solid #3e3d4f"));
+    this.display.clearHoverEffects();
     const isLastRow = row === 5;
     const canContinue = this.board[row][col] === "";
     if (canContinue && !this.waiting) {
