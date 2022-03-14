@@ -17,8 +17,6 @@ $ npm run serve
 
 - TypeScript
 
-- EsLint
-
 - Express
 
 - Cypress
