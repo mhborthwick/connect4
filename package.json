@@ -2,7 +2,6 @@
   "name": "connect4",
   "version": "1.0.0",
   "description": "Simple connect four implementation in TypeScript",
-  "main": "dist/connect4.js",
   "scripts": {
     "build": "webpack --config webpack.config.js",
     "cypress:open": "cypress open",
