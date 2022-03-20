@@ -38,6 +38,7 @@ export class Connect4 {
 
   clickCell = (row: number, col: number): void => {
     this.display.disableHover();
+    let win = false;
     const isLastRow = row === 5;
     const canContinue = this.board[row][col] === "";
     if (canContinue && !this.waiting) {
@@ -45,12 +46,14 @@ export class Connect4 {
         this.board[row][col] = this.currentPlayer.token;
         this.display.updateBoard(row, col, this.currentPlayer);
         this.currentPlayer.isTurn = false;
+        win = this.isGameWon(row, col);
       } else {
         const isCellBelowOpen = this.board[row + 1][col] === "";
         if (!isCellBelowOpen) {
           this.board[row][col] = this.currentPlayer.token;
           this.display.updateBoard(row, col, this.currentPlayer);
           this.currentPlayer.isTurn = false;
+          win = this.isGameWon(row, col);
         } else {
           let i = 1;
           do {
@@ -58,6 +61,8 @@ export class Connect4 {
               this.board[row + i][col] = this.currentPlayer.token;
               this.display.updateBoard(row + i, col, this.currentPlayer);
               this.currentPlayer.isTurn = false;
+              win = this.isGameWon(row + i, col);
+              break;
             } else if (
               this.board[row + i][col] === "" &&
               !(this.board[row + i + 1][col] === "")
@@ -65,12 +70,13 @@ export class Connect4 {
               this.board[row + i][col] = this.currentPlayer.token;
               this.display.updateBoard(row + i, col, this.currentPlayer);
               this.currentPlayer.isTurn = false;
+              win = this.isGameWon(row + i, col);
+              break;
             }
             i += 1;
           } while (row + i <= 5);
         }
       }
-      const win = this.isGameWon(row, col);
       const stalemate = this.board
         .map((row) => row.filter((col) => col === ""))
         .filter((row) => row.length > 0);
@@ -122,6 +128,7 @@ export class Connect4 {
   }
 
   isGameWon(row: number, col: number): boolean {
+    console.log(this.board);
     // refactor later
     if (
       // Horizontal win
@@ -252,9 +259,13 @@ export class Connect4 {
         this.board[2][1] === this.currentPlayer.token &&
         this.board[1][2] === this.currentPlayer.token &&
         this.board[0][3] === this.currentPlayer.token)
-    )
+    ) {
+      console.log("yay");
       return true;
-    return false;
+    } else {
+      console.log("nooo");
+      return false;
+    }
   }
 
   switchPlayer(): void {
