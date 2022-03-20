@@ -1,5 +1,7 @@
+/// <reference types = "cypress"/>
+
 describe("Connect4", () => {
-  const url = Cypress.config().baseUrl;
+  const url = <string>Cypress.config().baseUrl;
 
   describe("Start Game", () => {
     beforeEach(() => {

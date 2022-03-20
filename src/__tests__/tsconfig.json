@@ -8,5 +8,5 @@
     "removeComments": true,
     "esModuleInterop": true
   },
-  "include": ["src/__tests__/e2e/**/*.ts"]
+  "include": ["./e2e/*.ts"]
 }
