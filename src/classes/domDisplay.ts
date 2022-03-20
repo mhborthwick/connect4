@@ -77,8 +77,8 @@ export class DOMDisplay implements Display {
     const currentCell = this.getElement(
       `[data-row="${row}"] [data-col="${col}"]`
     );
-    const isLastCellInRowEmpty = row === 5 && !currentCell.innerHTML.length;
-    if (isLastCellInRowEmpty) {
+    const isCellInLastRowEmpty = row === 5 && !currentCell.innerHTML.length;
+    if (isCellInLastRowEmpty) {
       this.getElement(`[data-row="${row}"] [data-col="${col}"]`).style.border =
         "2px solid #F9A810";
     }
