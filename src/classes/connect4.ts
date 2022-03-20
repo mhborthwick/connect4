@@ -29,43 +29,16 @@ export class Connect4 {
   }
 
   hoverCell = (row: number, col: number, eventString: string): void => {
-    // refactor later
     if (eventString === "mouseover") {
-      const currentCol = this.display.getElement(
-        `[data-row="${row}"] [data-col="${col}"]`
-      );
-      if (row === 5 && !currentCol.innerHTML.length) {
-        this.display.getElement(
-          `[data-row="${row}"] [data-col="${col}"]`
-        ).style.border = "2px solid #F9A810";
-      }
-      let i = 1;
-      while (row + i <= 5) {
-        const colBelow = this.display.getElement(
-          `[data-row="${row + i}"] [data-col="${col}"]`
-        );
-        const colAbove = this.display.getElement(
-          `[data-row="${row + i - 1}"] [data-col="${col}"]`
-        );
-        if (row + i === 5 && !colBelow.innerHTML.length) {
-          this.display.getElement(
-            `[data-row="${row + i}"] [data-col="${col}"]`
-          ).style.border = "2px solid #F9A810";
-        } else if (colBelow.innerHTML.length && !colAbove.innerHTML.length) {
-          this.display.getElement(
-            `[data-row="${row + i - 1}"] [data-col="${col}"]`
-          ).style.border = "2px solid #F9A810";
-        }
-        i += 1;
-      }
+      this.display.enableHover(row, col);
     } else if (eventString === "mouseout") {
-      this.display.clearHoverEffects();
+      this.display.disableHover();
     }
   };
 
   clickCell = (row: number, col: number): void => {
     // refactor later
-    this.display.clearHoverEffects();
+    this.display.disableHover();
     const isLastRow = row === 5;
     const canContinue = this.board[row][col] === "";
     if (canContinue && !this.waiting) {

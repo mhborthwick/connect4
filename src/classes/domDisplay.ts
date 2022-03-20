@@ -73,7 +73,37 @@ export class DOMDisplay implements Display {
     message.remove();
   }
 
-  clearHoverEffects(): void {
+  enableHover(row: number, col: number): void {
+    const currentCell = this.getElement(
+      `[data-row="${row}"] [data-col="${col}"]`
+    );
+    const isLastCellInRowEmpty = row === 5 && !currentCell.innerHTML.length;
+    if (isLastCellInRowEmpty) {
+      this.getElement(`[data-row="${row}"] [data-col="${col}"]`).style.border =
+        "2px solid #F9A810";
+    }
+    let i = 1;
+    while (row + i <= 5) {
+      const cellBelow = this.getElement(
+        `[data-row="${row + i}"] [data-col="${col}"]`
+      );
+      const cellAbove = this.getElement(
+        `[data-row="${row + i - 1}"] [data-col="${col}"]`
+      );
+      if (row + i === 5 && !cellBelow.innerHTML.length) {
+        this.getElement(
+          `[data-row="${row + i}"] [data-col="${col}"]`
+        ).style.border = "2px solid #F9A810";
+      } else if (cellBelow.innerHTML.length && !cellAbove.innerHTML.length) {
+        this.getElement(
+          `[data-row="${row + i - 1}"] [data-col="${col}"]`
+        ).style.border = "2px solid #F9A810";
+      }
+      i += 1;
+    }
+  }
+
+  disableHover(): void {
     const cols = this.getAllElements(".col") as NodeListOf<HTMLElement>;
     cols.forEach((c) => (c.style.border = "2px solid #3e3d4f"));
   }
