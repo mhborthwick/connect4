@@ -37,7 +37,6 @@ export class Connect4 {
   };
 
   clickCell = (row: number, col: number): void => {
-    // refactor later
     this.display.disableHover();
     const isLastRow = row === 5;
     const canContinue = this.board[row][col] === "";
@@ -53,9 +52,8 @@ export class Connect4 {
           this.display.updateBoard(row, col, this.currentPlayer);
           this.currentPlayer.isTurn = false;
         } else {
-          // refactor later
           let i = 1;
-          while (row + i <= 5) {
+          do {
             if (row + i === 5 && this.board[row + i][col] === "") {
               this.board[row + i][col] = this.currentPlayer.token;
               this.display.updateBoard(row + i, col, this.currentPlayer);
@@ -67,10 +65,9 @@ export class Connect4 {
               this.board[row + i][col] = this.currentPlayer.token;
               this.display.updateBoard(row + i, col, this.currentPlayer);
               this.currentPlayer.isTurn = false;
-            } else {
-              i += 1;
             }
-          }
+            i += 1;
+          } while (row + i <= 5);
         }
       }
       const win = this.isGameWon(row, col);
