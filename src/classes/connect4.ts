@@ -1,4 +1,4 @@
-import { Display, Score, Player } from "../types";
+import { Display, Score, Player } from "../interfaces/index";
 
 export class Connect4 {
   display: Display;

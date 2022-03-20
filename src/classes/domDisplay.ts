@@ -1,4 +1,4 @@
-import { Display, Player, Score } from "../types";
+import { Display, Player, Score } from "../interfaces/index";
 
 export class DOMDisplay implements Display {
   getElement(selector: string): HTMLElement {
