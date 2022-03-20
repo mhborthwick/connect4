@@ -1,6 +1,6 @@
 import { Display, Player, Score } from "../types";
 
-export default class DOMDisplay implements Display {
+export class DOMDisplay implements Display {
   getElement(selector: string): HTMLElement {
     return <HTMLElement>document.querySelector(selector);
   }

@@ -1,6 +1,6 @@
 import { Display, Score, Player } from "../types";
 
-export default class Connect4 {
+export class Connect4 {
   display: Display;
   score: Score;
   board: string[][];

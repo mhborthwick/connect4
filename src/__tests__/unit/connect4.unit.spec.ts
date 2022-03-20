@@ -1,5 +1,4 @@
-import Connect4 from "../../classes/connect4";
-import DOMDisplay from "../../classes/domDisplay";
+import { Connect4, DOMDisplay } from "../../classes/index";
 
 jest.mock("../../classes/domDisplay");
 
