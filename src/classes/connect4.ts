@@ -128,7 +128,6 @@ export class Connect4 {
   }
 
   isGameWon(row: number, col: number): boolean {
-    console.log(this.board);
     // refactor later
     if (
       // Horizontal win
@@ -260,10 +259,8 @@ export class Connect4 {
         this.board[1][2] === this.currentPlayer.token &&
         this.board[0][3] === this.currentPlayer.token)
     ) {
-      console.log("yay");
       return true;
     } else {
-      console.log("nooo");
       return false;
     }
   }
