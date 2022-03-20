@@ -40,13 +40,13 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
-/***/ "./src/main/index.ts":
-/*!***************************!*\
-  !*** ./src/main/index.ts ***!
-  \***************************/
+/***/ "./src/index.ts":
+/*!**********************!*\
+  !*** ./src/index.ts ***!
+  \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _classes_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../classes/index */ \"./src/classes/index.ts\");\n\nvar connect4 = new _classes_index__WEBPACK_IMPORTED_MODULE_0__.Connect4(new _classes_index__WEBPACK_IMPORTED_MODULE_0__.DOMDisplay());\nconnect4.startGame();\n\n\n//# sourceURL=webpack://connect4/./src/main/index.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _classes_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./classes/index */ \"./src/classes/index.ts\");\n\nvar connect4 = new _classes_index__WEBPACK_IMPORTED_MODULE_0__.Connect4(new _classes_index__WEBPACK_IMPORTED_MODULE_0__.DOMDisplay());\nconnect4.startGame();\n\n\n//# sourceURL=webpack://connect4/./src/index.ts?");
 
 /***/ })
 
@@ -110,7 +110,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _cla
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	var __webpack_exports__ = __webpack_require__("./src/main/index.ts");
+/******/ 	var __webpack_exports__ = __webpack_require__("./src/index.ts");
 /******/ 	
 /******/ })()
 ;
