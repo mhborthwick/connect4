@@ -113,7 +113,7 @@ export class DOMDisplay implements Display {
     const player = winner === "red" ? "Player 1" : "Player 2";
     message.textContent = winner ? `${player} wins!` : "Nobody wins!";
     const game = this.getElement("#game");
-    game.prepend(message);
+    game.append(message);
   }
 
   updateScore(currentScore: Score, currentPlayer: Player): void {
