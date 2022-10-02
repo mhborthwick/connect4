@@ -4,6 +4,12 @@
 
 ## [View Demo](https://mhborthwick.github.io/connect4/)
 
+## Requirements
+
+```
+node >=14
+```
+
 ## Install
 
 ```
