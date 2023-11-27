@@ -1,6 +1,6 @@
 # 4️⃣ Connect Four
 
-> Simple Connect Four implementation in TypeScript
+> A Connect Four implementation in TypeScript
 
 ## [View Demo](https://mhborthwick.github.io/connect4/)
 
